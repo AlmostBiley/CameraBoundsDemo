@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2f3ncqu40gb7"]
+
+[ext_resource type="Texture2D" uid="uid://dpg3a4ge560pu" path="res://icon.svg" id="1_nyp6n"]
+[ext_resource type="Script" uid="uid://rul7n0uyt6vn" path="res://doodad.gd" id="2_tgx45"]
+
+[node name="Doodad1" type="Sprite2D"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_nyp6n")
+script = ExtResource("2_tgx45")

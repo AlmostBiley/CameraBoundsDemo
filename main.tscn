@@ -1,0 +1,93 @@
+[gd_scene load_steps=11 format=3 uid="uid://b7oex4dmdimfx"]
+
+[ext_resource type="PackedScene" uid="uid://mmmk522hndr" path="res://camera_bounds.tscn" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://dpg3a4ge560pu" path="res://icon.svg" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://3wys5m45h5wi" path="res://player.gd" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://c5xcoojs5edse" path="res://camera.gd" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://c2f3ncqu40gb7" path="res://doodad.tscn" id="5_lquwl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1bvp3"]
+radius = 15.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1bvp3"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_272bh"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lquwl"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7mycd"]
+normal = Vector2(-1, 0)
+
+[node name="Main" type="Node2D"]
+y_sort_enabled = true
+
+[node name="CameraBounds" parent="." instance=ExtResource("1_ig7tw")]
+
+[node name="ReferenceRect" parent="CameraBounds" index="0"]
+editor_only = false
+
+[node name="Ground" type="Polygon2D" parent="."]
+z_index = -1
+color = Color(0, 0.360784, 0, 1)
+polygon = PackedVector2Array(57, 68, 57, 542, 1008, 542, 1008, 68)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(599, 326)
+motion_mode = 1
+script = ExtResource("2_h2yge")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_0xm2m")
+
+[node name="Camera" type="Camera2D" parent="Player" node_paths=PackedStringArray("bounds")]
+script = ExtResource("4_1bvp3")
+bounds = NodePath("../../CameraBounds")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CircleShape2D_1bvp3")
+
+[node name="PlayerBoundary" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBoundary"]
+position = Vector2(518, 542)
+shape = SubResource("WorldBoundaryShape2D_1bvp3")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="PlayerBoundary"]
+position = Vector2(518, 67)
+shape = SubResource("WorldBoundaryShape2D_272bh")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerBoundary"]
+position = Vector2(57, 286)
+shape = SubResource("WorldBoundaryShape2D_lquwl")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="PlayerBoundary"]
+position = Vector2(1003, 286)
+shape = SubResource("WorldBoundaryShape2D_7mycd")
+
+[node name="Doodads" type="Node2D" parent="."]
+
+[node name="Doodad1" parent="Doodads" instance=ExtResource("5_lquwl")]
+position = Vector2(347, 197)
+
+[node name="Doodad2" parent="Doodads" instance=ExtResource("5_lquwl")]
+position = Vector2(645, 156)
+
+[node name="Doodad3" parent="Doodads" instance=ExtResource("5_lquwl")]
+position = Vector2(864, 278)
+
+[node name="Doodad4" parent="Doodads" instance=ExtResource("5_lquwl")]
+position = Vector2(832, 438)
+
+[node name="Doodad5" parent="Doodads" instance=ExtResource("5_lquwl")]
+position = Vector2(503, 463)
+
+[node name="Doodad6" parent="Doodads" instance=ExtResource("5_lquwl")]
+position = Vector2(239, 442)
+
+[node name="Doodad7" parent="Doodads" instance=ExtResource("5_lquwl")]
+position = Vector2(186, 289)
+
+[editable path="CameraBounds"]
