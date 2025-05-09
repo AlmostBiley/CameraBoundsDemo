@@ -25,9 +25,6 @@ y_sort_enabled = true
 
 [node name="CameraBounds" parent="." instance=ExtResource("1_ig7tw")]
 
-[node name="ReferenceRect" parent="CameraBounds" index="0"]
-editor_only = false
-
 [node name="Ground" type="Polygon2D" parent="."]
 z_index = -1
 color = Color(0, 0.360784, 0, 1)
